@@ -1,6 +1,23 @@
 {
-    "optimal_threshold": 0.14978571816686675,
-    "recall": 0.868421052631579,
-    "f1": 0.4258064516129032,
-    "precision": 0.28205128205128205
+    "optimal_threshold": 0.42614023803782447,
+    "recall": 0.8615384615384616,
+    "precision": 0.6153846153846154,
+    "f1": 0.717948717948718,
+    "features": [
+        "Process temperature _K__roll_mean_480",
+        "Air temperature _K__roll_mean_240",
+        "Tool wear _min__lag1",
+        "Tool wear _min_",
+        "Torque _Nm_",
+        "Process temperature _K__ema_480",
+        "Air temperature _K__roll_mean_480",
+        "Process temperature _K__lag1",
+        "Process temperature _K__roll_mean_240",
+        "Tool wear _min__lag2",
+        "Air temperature _K__lag2",
+        "Rotational speed _rpm_",
+        "Air temperature _K__lag1",
+        "Process temperature _K__roll_mean_60",
+        "Process temperature _K__lag2"
+    ]
 }
