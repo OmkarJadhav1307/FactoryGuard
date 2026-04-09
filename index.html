@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FactoryGuard AI | Vision Portal</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dark-theme">
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-shield-virus"></i>
+                    <span>FACTORY<span>GUARD</span></span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="active"><i class="fas fa-chart-line"></i> Dashboard</a>
+                <a href="#"><i class="fas fa-microchip"></i> AI Engine</a>
+                <a href="#"><i class="fas fa-list-ul"></i> Maintenance Logs</a>
+                <a href="#"><i class="fas fa-circle-info"></i> SHAP Insights</a>
+                <a href="#"><i class="fas fa-gear"></i> Settings</a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="engine-status">
+                    <div class="status-dot online"></div>
+                    <span>AI Core: v2.4 Active</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Dashboard Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-bar">
+                <div class="portal-info">
+                    <h1>Real-Time Autonomous Monitoring</h1>
+                    <p>Ensemble Model protecting 482 Active Robotic Units</p>
+                </div>
+                <div class="user-profile">
+                    <div class="notification-bell">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="avatar">
+                        <img src="https://ui-avatars.com/api/?name=Admin&background=10b981&color=fff" alt="User">
+                    </div>
+                </div>
+            </header>
+
+            <!-- KPI Cards -->
+            <section class="stats-grid">
+                <div class="stat-card glass grow">
+                    <div class="stat-icon green"><i class="fas fa-check-circle"></i></div>
+                    <div class="stat-info">
+                        <h3>System Health</h3>
+                        <p class="value">99.8%</p>
+                        <p class="trend up"><i class="fas fa-arrow-up"></i> 0.2%</p>
+                    </div>
+                </div>
+                <div class="stat-card glass grow">
+                    <div class="stat-icon amber"><i class="fas fa-bullseye"></i></div>
+                    <div class="stat-info">
+                        <h3>Global Recall</h3>
+                        <p class="value">87.0%</p>
+                        <p class="trend up"><i class="fas fa-award"></i> Verified</p>
+                    </div>
+                </div>
+                <div class="stat-card glass grow highlight-danger">
+                    <div class="stat-icon red pulse"><i class="fas fa-exclamation-triangle"></i></div>
+                    <div class="stat-info">
+                        <h3>Active Risks</h3>
+                        <p class="value" id="risk-count">4</p>
+                        <p class="trend">Needs Attention</p>
+                    </div>
+                </div>
+                <div class="stat-card glass grow">
+                    <div class="stat-icon blue"><i class="fas fa-piggy-bank"></i></div>
+                    <div class="stat-info">
+                        <h3>Est. Savings</h3>
+                        <p class="value">$1.2M</p>
+                        <p class="trend up"><i class="fas fa-arrow-up"></i> 12% YoY</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Middle Section: Main Monitoring + Alert List -->
+            <div class="dashboard-mid-row">
+                <div class="chart-container glass">
+                    <div class="chart-header">
+                        <h2>Predictive Sensor Stream (Unit #482)</h2>
+                        <div class="chart-controls">
+                            <span class="live-tag">LIVE</span>
+                            <select id="sensor-select">
+                                <option value="torque">Torque [Nm]</option>
+                                <option value="speed">Rotational Speed [RPM]</option>
+                                <option value="temp">Process Temp [K]</option>
+                            </select>
+                        </div>
+                    </div>
+                    <canvas id="sensorChart"></canvas>
+                </div>
+
+                <div class="alert-feed glass">
+                    <div class="feed-header">
+                        <h2>High-Risk Alerts</h2>
+                    </div>
+                    <div class="alerts-list" id="alerts-list">
+                        <!-- Alert items will be injected here -->
+                        <div class="alert-item high">
+                            <div class="alert-meta">
+                                <span class="unit">Unit #102</span>
+                                <span class="time">2m ago</span>
+                            </div>
+                            <p>Torque Spikes Detected (>65Nm). Probability of failure 84.2% within 24hr.</p>
+                            <button class="action-btn">Schedule Inspection</button>
+                        </div>
+                        <div class="alert-item med">
+                            <div class="alert-meta">
+                                <span class="unit">Unit #215</span>
+                                <span class="time">15m ago</span>
+                            </div>
+                            <p>Tool Wear reached critical threshold (210min). Suggested replacement.</p>
+                            <button class="action-btn">View SHAP</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Section: Manual Prediction Sandbox -->
+            <section class="sandbox-container glass">
+                <div class="sandbox-header">
+                    <h2>Model Sandbox: Manual Diagnostic</h2>
+                    <p>Test sensor parameters against the Ensemble Engine</p>
+                </div>
+                <div class="sandbox-grid">
+                    <div class="input-group">
+                        <label>Torque [Nm]</label>
+                        <input type="range" id="torque-in" min="10" max="80" value="45">
+                        <span class="in-val" id="torque-val">45 Nm</span>
+                    </div>
+                    <div class="input-group">
+                        <label>Speed [RPM]</label>
+                        <input type="range" id="speed-in" min="1000" max="3000" value="1500">
+                        <span class="in-val" id="speed-val">1500 RPM</span>
+                    </div>
+                    <div class="input-group">
+                        <label>Tool Wear [Min]</label>
+                        <input type="range" id="wear-in" min="0" max="250" value="110">
+                        <span class="in-val" id="wear-val">110 Min</span>
+                    </div>
+                    <div class="prediction-output">
+                        <button id="predict-btn">RUN DIAGNOSTIC</button>
+                        <div id="result-display" class="result-box">
+                            <p>Status: <span id="res-status">Standby</span></p>
+                            <div class="gauge-container">
+                                <div class="gauge-bar" id="gauge-bar"></div>
+                            </div>
+                            <p id="res-msg">Adjust parameters to see prediction probability</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
