@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-bg-dark text-white font-body antialiased;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-bg-card backdrop-blur-xl border border-white/[0.06] rounded-2xl;
+  }
+  
+  .glass-hover {
+    @apply glass transition-all duration-300 hover:border-white/[0.12] hover:translate-y-[-2px];
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.15); }
+
+/* Range slider styling */
+input[type=range] {
+  -webkit-appearance: none;
+  @apply w-full h-1.5 rounded-full bg-white/5 outline-none cursor-pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  @apply w-4 h-4 rounded-full bg-accent-green shadow-lg shadow-accent-green/30 cursor-pointer;
+}
+
+/* Three.js canvas */
+.three-canvas canvas {
+  @apply rounded-xl;
+}
