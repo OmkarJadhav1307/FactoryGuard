@@ -1,10 +1,13 @@
 // --- FactoryGuard AI Portal V2.0 (3D Digital Twin Engine) ---
 
 document.addEventListener('DOMContentLoaded', () => {
-    initThreeJS();
-    initCharts();
-    initUI();
-    startSimulation();
+    console.log("FactoryGuard: Initiating Systems...");
+    
+    // Safety Wrapper to ensure one failure doesn't kill the dashboard
+    try { initThreeJS(); } catch(e) { console.error("3D Engine Fail:", e); }
+    try { initCharts(); } catch(e) { console.error("Chart Engine Fail:", e); }
+    try { initUI(); } catch(e) { console.error("UI Logic Fail:", e); }
+    try { startSimulation(); } catch(e) { console.error("Sim Engine Fail:", e); }
 });
 
 // --- 1. Global State & Config ---
@@ -26,12 +29,15 @@ let labels = Array(30).fill('');
 // --- 2. 3D Digital Twin (Three.js) ---
 function initThreeJS() {
     const container = document.getElementById('three-container');
+    const width = container.clientWidth || 600;
+    const height = container.clientHeight || 400;
+
     scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+    camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
     camera.position.set(6, 6, 8);
 
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setSize(width, height);
     renderer.setPixelRatio(window.devicePixelRatio);
     container.appendChild(renderer.domElement);
 
@@ -44,10 +50,17 @@ function initThreeJS() {
 
     buildMillingMachine();
 
-    // OrbitControls
-    controls = new THREE.OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.autoRotate = false;
+    // OrbitControls - Handle Global vs Namespace
+    const Controls = window.THREE.OrbitControls || THREE.OrbitControls;
+    if (Controls) {
+        controls = new Controls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.autoRotate = false;
+    } else {
+        console.warn("OrbitControls not found. Interaction disabled.");
+        // Mock controls object to prevent animate() failure
+        controls = { update: () => {} };
+    }
 
     window.addEventListener('resize', onWindowResize);
     animate();
